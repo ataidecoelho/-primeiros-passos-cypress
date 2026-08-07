@@ -15,6 +15,9 @@ describe('Orange HRM - Tests', () => {
     lastNameField: '[name="lastName"]',
     middleNameFiel: '[name="middleName"]',
     genericField: ".oxd-input",
+    genericComboBox: ".oxd-select-text-input",
+    secondItemComboBox: ".oxd-select-dropdown > :nth-child(27)",
+    thirdItemComboBox: ".oxd-select-dropdown > :nth-child(3)",
     dateCloseButton: ".--close",
     submitButton: "[type='submit']"
     
@@ -39,9 +42,14 @@ describe('Orange HRM - Tests', () => {
     cy.get(selectorsList.genericField).eq(6).clear().type("3030")
     cy.get(selectorsList.genericField).eq(7).clear().type("2026-07-08")
     cy.get(selectorsList.dateCloseButton).click()
+    cy.get(selectorsList.genericComboBox).eq(0).click({force: true})
+    cy.get(selectorsList.secondItemComboBox).click()
+    cy.get(selectorsList.genericComboBox).eq(1).click({force: true})
+    cy.get(selectorsList.thirdItemComboBox).click()
     cy.get(selectorsList.submitButton).eq(0).click()
     cy.get('body').should('contain', 'Successfully Updated')
     cy.get('.oxd-toast-close')
+    
   
     
   })
